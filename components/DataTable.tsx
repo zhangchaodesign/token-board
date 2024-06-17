@@ -48,7 +48,7 @@ const DataTable = (props: DataTableProps) => {
                       content={
                         typeof item[column] === "number"
                           ? item[column].toLocaleString()
-                          : item[column]
+                          : item[column].toString()
                       }
                     />
                   </td>
