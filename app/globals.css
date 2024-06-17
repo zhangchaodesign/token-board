@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -11,29 +11,58 @@
 }
 
 body {
-  font-family: Inter;
+  font-family: "Roboto Condensed";
+}
+
+/* clear default table, th, td styles */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  font-weight: normal;
+}
+
+td {
+  font-weight: normal;
 }
 
 @layer utilities {
-  .canvasCenter {
-    @apply flex flex-col items-center justify-center h-screen w-screen;
+  /* LINE */
+  .line-dashed {
+    @apply border-t-[0.8px] w-full border-dashed border-gray-300;
+    border-image: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 2px,
+        #ccc 2px,
+        #ccc 4px
+      )
+      1;
   }
 
-  /* COLORS */
-  .btn_white {
-    @apply border-white bg-white px-8 py-3 text-green-50;
+  /* BUTTON */
+  .btn {
+    @apply bg-gray-800 w-[160px] px-8 py-4 text-white transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
   }
-  .btn_white_text {
-    @apply border-white bg-white px-8 py-3 text-gray-90;
+
+  /* TABLE */
+  .row-title-box {
+    @apply bg-blue-600 w-[150px] h-[64px] rounded px-2 py-1 flex flex-col items-center justify-center gap-1 text-white text-base m-1;
   }
-  .btn_green {
-    @apply border-green-50 bg-green-50 px-8 py-5 text-white;
+
+  .col-title-box {
+    @apply bg-gray-500 w-[150px] rounded py-2 text-white text-base m-1 flex flex-col items-center justify-center;
   }
-  .btn_dark_green {
-    @apply bg-green-90 px-8 py-4 text-white transition-all hover:bg-black;
+
+  .total-box {
+    @apply bg-gray-100 w-[100px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center;
   }
-  .btn_dark_green_outline {
-    @apply border-gray-20 bg-green-90 px-8 py-5 text-white;
+
+  .cell-box {
+    @apply bg-white w-[150px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center;
   }
 
   /* CONTAINERS */
@@ -45,110 +74,27 @@ body {
     @apply px-6 lg:px-20 3xl:px-0;
   }
 
-  .flexCenter {
+  .canvas-center {
+    @apply flex flex-col items-center justify-center h-screen w-screen;
+  }
+
+  .flex-center {
     @apply flex items-center justify-center;
   }
 
-  .flexBetween {
+  .flex-between {
     @apply flex items-center justify-between;
   }
 
-  .flexStart {
+  .flex-start {
     @apply flex items-center justify-start;
   }
 
-  .flexEnd {
+  .flex-end {
     @apply flex items-center justify-end;
   }
 
   /* FONTS */
-  .regular-64 {
-    @apply text-[64px] font-[400] leading-[120%];
-  }
-
-  .regular-40 {
-    @apply text-[40px] font-[400] leading-[120%];
-  }
-
-  .regular-32 {
-    @apply text-[32px] font-[400];
-  }
-
-  .regular-24 {
-    @apply text-[24px] font-[400];
-  }
-
-  .regular-20 {
-    @apply text-[20px] font-[400];
-  }
-
-  .regular-18 {
-    @apply text-[18px] font-[400];
-  }
-
-  .regular-16 {
-    @apply text-[16px] font-[400];
-  }
-
-  .regular-14 {
-    @apply text-[14px] font-[400];
-  }
-
-  .medium-14 {
-    @apply text-[14px] font-[600];
-  }
-
-  .bold-88 {
-    @apply text-[88px] font-[700] leading-[120%];
-  }
-
-  .bold-64 {
-    @apply text-[64px] font-[700] leading-[120%];
-  }
-
-  .bold-52 {
-    @apply text-[52px] font-[700] leading-[120%];
-  }
-
-  .bold-40 {
-    @apply text-[40px] font-[700] leading-[120%];
-  }
-
-  .bold-32 {
-    @apply text-[32px] font-[700] leading-[120%];
-  }
-
-  .bold-20 {
-    @apply text-[20px] font-[700];
-  }
-
-  .bold-18 {
-    @apply text-[18px] font-[700];
-  }
-
-  .bold-16 {
-    @apply text-[16px] font-[700];
-  }
-
-  /* Hero */
-  .hero-map {
-    @apply absolute right-0 top-0 h-screen w-screen bg-pattern-2 bg-cover bg-center md:-right-28 xl:-top-60;
-  }
-
-  /* Camp */
-  .camp-quote {
-    @apply absolute -right-6 bottom-4 w-[140px] lg:bottom-10 xl:-right-8 xl:w-[186px] 3xl:right-0;
-  }
-
-  /* Feature */
-  .feature-phone {
-    @apply absolute top-[13%] z-10 hidden max-w-[1500px] rotate-[15deg] md:-left-16 lg:flex  3xl:left-20;
-  }
-
-  /* Get App */
-  .get-app {
-    @apply max-container relative flex w-full  flex-col justify-between gap-32 overflow-hidden bg-green-90 bg-pattern bg-cover bg-center bg-no-repeat px-6 py-12 text-white sm:flex-row sm:gap-12 sm:py-24 lg:px-20 xl:max-h-[598px] 2xl:rounded-5xl;
-  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
