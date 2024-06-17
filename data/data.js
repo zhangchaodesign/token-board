@@ -106,7 +106,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "FacebookAI",
@@ -215,7 +215,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "AllenAI",
@@ -324,7 +324,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Code Llama",
@@ -433,7 +433,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Google",
@@ -542,7 +542,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Google",
@@ -651,7 +651,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Google",
@@ -760,7 +760,7 @@ const DATA = [
     ROMAN: 1,
     SAMARITAN: 3,
     SUNDANESE: 1,
-    VERTICAL: 1
+    VERTICAL: 1,
   },
   {
     company: "OpenAI",
@@ -869,7 +869,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "OpenAI",
@@ -978,7 +978,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "OpenAI",
@@ -1087,7 +1087,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Meta",
@@ -1196,7 +1196,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Meta",
@@ -1305,7 +1305,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "Microsoft",
@@ -1414,7 +1414,7 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
+    VERTICAL: 0,
   },
   {
     company: "MistralAI",
@@ -1523,8 +1523,8 @@ const DATA = [
     ROMAN: 0,
     SAMARITAN: 0,
     SUNDANESE: 0,
-    VERTICAL: 0
-  }
+    VERTICAL: 0,
+  },
 ];
 
 export default DATA;

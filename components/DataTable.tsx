@@ -30,7 +30,6 @@ const DataTable = (props: DataTableProps) => {
             }
           </tr>
         </thead>
-
         <tbody>
           {
             // skip first three columns
