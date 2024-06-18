@@ -45,11 +45,8 @@ const DataTable = (props: DataTableProps) => {
                 {columns.slice(3).map((column) => (
                   <td key={`${index}-${column}`}>
                     <CellBox
-                      content={
-                        typeof item[column] === "number"
-                          ? item[column].toLocaleString()
-                          : item[column].toString()
-                      }
+                      content={Number(item[column])}
+                      total={Number(item.total)}
                     />
                   </td>
                 ))}

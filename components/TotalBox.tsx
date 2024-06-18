@@ -6,7 +6,7 @@ type TotalBoxProps = {
 
 export const TotalBox = (props: TotalBoxProps) => {
   return (
-    <div className="total-box">
+    <div className="total-box select-none">
       <p className="capitalize text-base">{props.content}</p>
     </div>
   );

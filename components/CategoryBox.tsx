@@ -6,7 +6,7 @@ type CategoryBoxProps = {
 
 export const CategoryBox = (props: CategoryBoxProps) => {
   return (
-    <div className="col-title-box">
+    <div className="col-title-box select-none">
       <p className="capitalize text-base">{props.category.toUpperCase()}</p>
     </div>
   );
