@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { cn } from "@/libs/utils";
 import { ModelBox } from "@/components/ModelBox";
 import { CategoryBox } from "@/components/CategoryBox";
 import { CellBox } from "@/components/CellBox";
@@ -6,20 +7,28 @@ import { TotalBox } from "@/components/TotalBox";
 import { Data, CellData } from "@/libs/type";
 
 type DataTableProps = {
+  classes: string;
   data: Data;
 };
 
-const DataTable = (props: DataTableProps) => {
+export const DataTable = (props: DataTableProps) => {
   const columns = useMemo(() => {
     return props.data.length > 0 ? Object.keys(props.data[0]) : [];
   }, []);
 
   return (
-    <div className="relative">
+    <div className={cn(props.classes + "")}>
       <table>
-        <thead className="sticky top-16 z-10">
-          <tr>
-            <th key="model"></th>
+        <thead>
+          <tr className="sticky top-40 z-20 bg-gray-50 rounded">
+            <th
+              key="model"
+              className="sticky left-6 top-40 z-30 bg-gray-50 rounded"
+            >
+              <div className="bg-gray-800 w-[258px] rounded py-2 text-white text-base m-1 flex flex-col items-center justify-center select-none">
+                <p className="capitalize text-base">MODEL</p>
+              </div>
+            </th>
             {
               // skip first two columns
               columns.slice(3).map((column) => (
@@ -35,7 +44,10 @@ const DataTable = (props: DataTableProps) => {
             // skip first three columns
             props.data.map((item: CellData, index) => (
               <tr key={index}>
-                <th key="model" className="sticky left-6 z-30 flex flex-row">
+                <th
+                  key="model"
+                  className="sticky left-6 z-10 bg-gray-50 flex flex-row rounded"
+                >
                   <ModelBox
                     model={item.model.toString()}
                     company={item.company.toString()}
@@ -55,10 +67,6 @@ const DataTable = (props: DataTableProps) => {
           }
         </tbody>
       </table>
-      <div className="fixed top-0 left-0 bg-gray-50 h-screen w-72 z-20"></div>
-      <div className="fixed top-0 left-0 bg-gray-50 h-28 w-72 z-30"></div>
     </div>
   );
 };
-
-export default DataTable;
