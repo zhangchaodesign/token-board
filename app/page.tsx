@@ -1,12 +1,48 @@
-import { DataTable } from "@/components/DataTable";
-import { ToolBar } from "@/components/ToolBar";
+"use client";
+import { useState } from "react";
+import { DataTable } from "@/components/homepage/DataTable";
+import { ToolBar } from "@/components/homepage/ToolBar";
 import data from "@/data/data";
+import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
+  const [highlightCategory, setHighlightCategory] = useState<string>("");
+  const [displayMode, setDisplayMode] = useState<string>("PERCENTAGE");
+  const displayModeList: string[] = ["COUNT", "PERCENTAGE"];
+  const [categorySortingMode, setCategorySortingMode] =
+    useState<string>("DESCENDING ORDER");
+  const categorySortingModeList: string[] = [
+    "ALPHABETICAL ORDER",
+    "ASCENDING ORDER",
+    "DESCENDING ORDER"
+  ];
+  const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
+  const modelSortingModeList: string[] = CATEGORY;
+
   return (
     <div className="">
-      <ToolBar classes="fixed top-16 left-0 px-6 z-20 w-full" />
-      <DataTable data={data} classes="absolute top-40 px-6 pb-4" />
+      <ToolBar
+        classes="fixed top-16 left-0 px-6 z-20 w-full"
+        highlightCategory={highlightCategory}
+        setHighlightCategory={setHighlightCategory}
+        displayMode={displayMode}
+        setDisplayMode={setDisplayMode}
+        categorySortingMode={categorySortingMode}
+        setCategorySortingMode={setCategorySortingMode}
+        displayModeList={displayModeList}
+        categorySortingModeList={categorySortingModeList}
+        modelSortingMode={modelSortingMode}
+        setModelSortingMode={setModelSortingMode}
+        modelSortingModeList={modelSortingModeList}
+      />
+      <DataTable
+        data={data}
+        classes="absolute top-40 px-6 pb-4"
+        highlightCategory={highlightCategory}
+        displayMode={displayMode}
+        categorySortingMode={categorySortingMode}
+        modelSortingMode={modelSortingMode}
+      />
     </div>
   );
 }

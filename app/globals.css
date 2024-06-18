@@ -45,24 +45,24 @@ td {
 
   /* BUTTON */
   .btn {
-    @apply bg-gray-800 w-[160px] px-8 py-4 text-white transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
+    @apply bg-gray-800 w-[150px] px-8 py-4 text-white transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
   }
 
   /* TABLE */
   .row-title-box {
-    @apply bg-blue-600 w-[150px] h-[64px] rounded px-2 py-1 flex flex-col items-center justify-center gap-1 text-white text-base m-1;
+    @apply bg-blue-600 w-[150px] h-[64px] rounded px-2 py-1 flex flex-col items-center justify-center gap-1 text-white text-base m-1 select-none;
   }
 
   .col-title-box {
-    @apply bg-gray-500 w-[150px] rounded py-2 text-white text-base m-1 flex flex-col items-center justify-center;
+    @apply w-[150px] rounded py-2 text-white text-base m-1 flex flex-col items-center justify-center select-none;
   }
 
   .total-box {
-    @apply bg-gray-100 w-[100px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center;
+    @apply bg-gray-100 w-[100px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center select-none;
   }
 
   .cell-box {
-    @apply bg-white w-[150px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center;
+    @apply bg-white w-[150px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center cursor-pointer select-none transition hover:scale-105 duration-150 hover:shadow-sm border relative hover:bg-gray-800 hover:text-white hover:border-none;
   }
 
   /* CONTAINERS */
