@@ -14,7 +14,7 @@ export default function Home() {
   const categorySortingModeList: string[] = [
     "ALPHABETICAL ORDER",
     "ASCENDING ORDER",
-    "DESCENDING ORDER"
+    "DESCENDING ORDER",
   ];
   const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
   const modelSortingModeList: string[] = CATEGORY;

@@ -25,7 +25,7 @@ export const ToolBar = (props: ToolBarProps) => {
     <div
       className={cn(
         props.classes +
-          " bg-gray-50 py-4 z-50 flex flex-row gap-1 items-center h-24"
+          " bg-gray-50 py-4 z-50 flex flex-row gap-1 items-center h-24",
       )}
     >
       <div className="w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   TbContrast2Filled,
   TbCaretDownFilled,
-  TbArrowsSort
+  TbArrowsSort,
 } from "react-icons/tb";
 
 type DropdownToolProps = {
@@ -18,7 +18,7 @@ export const DropdownTool = (props: DropdownToolProps) => {
 
   // Filter list based on search term
   const filteredList = props.list.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase())
+    item.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
