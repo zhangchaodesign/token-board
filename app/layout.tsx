@@ -7,11 +7,11 @@ const roboto_condensed = Roboto_Condensed({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TokenBoard",
-  description: "A dashboard for token data"
+  description: "A dashboard for token data",
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
