@@ -17,7 +17,7 @@ export const SearchTool = (props: SearchToolProps) => {
     props.setHighlightCategory(value);
     if (value) {
       const filtered = CATEGORY.filter((category) =>
-        category.toLowerCase().includes(value.toLowerCase()),
+        category.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredCategories(filtered);
     } else {

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { DataTable } from "@/components/homepage/DataTable";
 import { ToolBar } from "@/components/homepage/ToolBar";
-import data from "@/data/data";
+import data from "@/public/data/overview";
 import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
   const categorySortingModeList: string[] = [
     "ALPHABETICAL ORDER",
     "ASCENDING ORDER",
-    "DESCENDING ORDER",
+    "DESCENDING ORDER"
   ];
   const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
   const modelSortingModeList: string[] = CATEGORY;
@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="">
       <ToolBar
-        classes="fixed top-16 left-0 px-6 z-20 w-full"
+        classes="fixed top-16 left-0 p-4 w-full"
         highlightCategory={highlightCategory}
         setHighlightCategory={setHighlightCategory}
         displayMode={displayMode}

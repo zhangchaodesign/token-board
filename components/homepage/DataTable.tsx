@@ -84,14 +84,14 @@ export const DataTable = (props: DataTableProps) => {
   useEffect(() => {
     if (headersRef.current) {
       const element = headersRef.current.querySelector(
-        `th[data-category="${props.highlightCategory.toUpperCase()}"]`,
+        `th[data-category="${props.highlightCategory.toUpperCase()}"]`
       );
       if (element) {
         //scroll into center
         element.scrollIntoView({
           behavior: "smooth",
           block: "center",
-          inline: "center",
+          inline: "center"
         });
       }
     }
@@ -143,6 +143,8 @@ export const DataTable = (props: DataTableProps) => {
                     content={Number(item[column])}
                     total={Number(item.total)}
                     displayMode={props.displayMode}
+                    model={item.model.toString()}
+                    category={column}
                   />
                 </td>
               ))}
