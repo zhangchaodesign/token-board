@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="">
       <ToolBar
-        classes="fixed top-16 left-0 p-4 w-full"
+        classes="fixed top-16 left-0 p-4 w-full h-[12vh]"
         highlightCategory={highlightCategory}
         setHighlightCategory={setHighlightCategory}
         displayMode={displayMode}

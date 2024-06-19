@@ -16,7 +16,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 h-16 bg-white flex flex-row w-full justify-between items-center py-4 px-8 border-b border-gray-100 z-[999999]">
+    <div className="fixed top-0 h-[8vh] bg-white flex flex-row w-full justify-between items-center py-4 px-8 border-b border-gray-100 z-[999999]">
       <h1 className="font-medium text-2xl text-gray-800 uppercase">
         <Link href="/">TokenBoard</Link>
       </h1>

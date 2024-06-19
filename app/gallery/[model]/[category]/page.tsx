@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { ModelBox } from "@/components/homepage/ModelBox";
 import { CategoryBox } from "@/components/homepage/CategoryBox";
 import { ToolBar } from "@/components/gallery/ToolBar";
 import { MODEL_DICT } from "@/libs/utils";
 import { Noto_Sans } from "next/font/google";
 import { Token } from "@/libs/type";
+import { TbArrowBackUp } from "react-icons/tb";
 
 type GalleryProps = {
   params: {
@@ -53,26 +55,29 @@ export default function Gallery(props: GalleryProps) {
 
   return (
     <div>
-      <ToolBar classes="fixed top-16 left-0 p-4 w-full" />
-      <div className="absolute top-40 px-6 pb-4 flex flex-row justify-center">
-        <div className="flex flex-col items-center gap-1">
-          <ModelBox model={props.params.model} company={company} />
-          <CategoryBox classes="bg-gray-500" category={props.params.category} />
+      <ToolBar classes="fixed top-16 left-0 p-4 w-full h-[12vh]" />
+      <div className="absolute top-40 px-6 flex flex-row justify-center gap-6">
+        <div className="flex-between flex-col pb-4">
+          <div className="flex flex-col items-center gap-1">
+            <ModelBox model={props.params.model} company={company} />
+            <CategoryBox
+              classes="bg-gray-500"
+              category={props.params.category}
+            />
+          </div>
+
+          <Link href={`/`} className="btn m-1 flex-center gap-4">
+            <TbArrowBackUp size={20} className="text-white" />
+            <button>BACK</button>
+          </Link>
         </div>
 
         <div
-          className={`flex flex-wrap gap-2 ${noto_sans.className}`}
-          style={{ alignItems: "flex-start" }}
+          className="flex flex-wrap gap-2 overflow-y-auto items-start h-[80vh] pb-4"
+          id="gallery"
         >
           {tokens.map((token, index) => (
-            <div
-              key={index}
-              style={{
-                height: "30px",
-                background: "lightgray",
-                padding: "5px",
-              }}
-            >
+            <div key={index} className={noto_sans.className + " token-box"}>
               {token.token}
             </div>
           ))}

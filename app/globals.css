@@ -45,7 +45,7 @@ td {
 
   /* BUTTON */
   .btn {
-    @apply bg-gray-800 w-[150px] px-8 py-4 text-white transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
+    @apply bg-gray-800 w-[150px] px-8 py-4 text-white uppercase transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
   }
 
   /* TABLE */
@@ -62,7 +62,11 @@ td {
   }
 
   .cell-box {
-    @apply bg-white w-[150px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center cursor-pointer select-none transition hover:scale-105 duration-150 hover:shadow-sm border relative hover:bg-gray-800 hover:text-white hover:border-none;
+    @apply bg-white w-[150px] h-[64px] rounded text-gray-800 text-base m-1 flex flex-col items-center justify-center cursor-pointer select-none transition hover:scale-105 duration-100 hover:shadow-md border relative hover:bg-gray-800 hover:text-white hover:border-none;
+  }
+
+  .token-box {
+    @apply px-4 py-2 bg-blue-50 rounded select-none hover:shadow-md transition hover:scale-105 duration-100 cursor-pointer;
   }
 
   /* CONTAINERS */
