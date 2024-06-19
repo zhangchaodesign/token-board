@@ -28,7 +28,7 @@ export default function Gallery(props: GalleryProps) {
   useEffect(() => {
     const fetchTokens = async () => {
       const response = await fetch(
-        `/data/model_tokens/${props.params.model}.tsv`
+        `/data/model_tokens/${props.params.model}.tsv`,
       );
       const text = await response.text();
       const lines = text.split("\n");
@@ -41,7 +41,7 @@ export default function Gallery(props: GalleryProps) {
             model_name,
             token_idx: Number(token_idx),
             token,
-            token_category
+            token_category,
           };
         })
         .filter((token) => token.token_category === props.params.category);
@@ -70,7 +70,7 @@ export default function Gallery(props: GalleryProps) {
               style={{
                 height: "30px",
                 background: "lightgray",
-                padding: "5px"
+                padding: "5px",
               }}
             >
               {token.token}
