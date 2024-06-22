@@ -1,10 +1,9 @@
-import DATA from "@/public/data/overview";
-import { CATEGORY } from "@/libs/utils";
+import OVERVIEW from "@/data/overview";
 
-export type Data = typeof DATA;
+export type Overview = typeof OVERVIEW;
 
 // create a type for keys in the data object
-export type DataKeys = keyof Data[0];
+export type DataKeys = keyof Overview[0];
 
 export type CellData = {
   [key: string]: string | number;
@@ -15,4 +14,5 @@ export type Token = {
   token_idx: number;
   token: string;
   token_category: string;
+  count: number;
 };

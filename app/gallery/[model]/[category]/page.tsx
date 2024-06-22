@@ -17,11 +17,11 @@ type GalleryProps = {
   };
 };
 
-// all subsets of the Noto Sans font
 const noto_sans = Noto_Sans({ preload: false });
 
 export default function Gallery(props: GalleryProps) {
   const [tokens, setTokens] = useState<Token[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const company =
     MODEL_DICT[
       MODEL_DICT.findIndex((item) => item.model === props.params.model)
@@ -29,29 +29,27 @@ export default function Gallery(props: GalleryProps) {
 
   useEffect(() => {
     const fetchTokens = async () => {
-      const response = await fetch(
-        `/data/model_tokens/${props.params.model}.tsv`,
+      setIsLoading(true);
+      const tokenDataModule = await import(
+        `@/data/tokens/${props.params.model.toLowerCase()}.js`
       );
-      const text = await response.text();
-      const lines = text.split("\n");
-      const tokensData = lines
-        .slice(1)
-        .map((line) => {
-          const [model_name, token_idx, token, token_category] =
-            line.split("\t");
-          return {
-            model_name,
-            token_idx: Number(token_idx),
-            token,
-            token_category,
-          };
-        })
-        .filter((token) => token.token_category === props.params.category);
+      const tokensData = tokenDataModule.default.filter(
+        (token: Token) => token.token_category === props.params.category
+      );
       setTokens(tokensData);
+      setIsLoading(false);
     };
 
     fetchTokens();
   }, [props.params.model, props.params.category]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -78,7 +76,7 @@ export default function Gallery(props: GalleryProps) {
         >
           {tokens.map((token, index) => (
             <div key={index} className={noto_sans.className + " token-box"}>
-              {token.token}
+              {token.token}: {token.count}
             </div>
           ))}
         </div>

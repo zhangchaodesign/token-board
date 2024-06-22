@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { DataTable } from "@/components/homepage/DataTable";
 import { ToolBar } from "@/components/homepage/ToolBar";
-import data from "@/public/data/overview";
+import OVERVIEW from "@/data/overview";
 import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
   const categorySortingModeList: string[] = [
     "ALPHABETICAL ORDER",
     "ASCENDING ORDER",
-    "DESCENDING ORDER",
+    "DESCENDING ORDER"
   ];
   const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
   const modelSortingModeList: string[] = CATEGORY;
@@ -36,7 +36,7 @@ export default function Home() {
         modelSortingModeList={modelSortingModeList}
       />
       <DataTable
-        data={data}
+        data={OVERVIEW}
         classes="absolute top-40 px-6 pb-4"
         highlightCategory={highlightCategory}
         displayMode={displayMode}
