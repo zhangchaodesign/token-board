@@ -34,7 +34,7 @@ export default function Gallery(props: GalleryProps) {
         `@/data/tokens/${props.params.model.toLowerCase()}.js`
       );
       const tokensData = tokenDataModule.default.filter(
-        (token: Token) => token.token_category === props.params.category
+        (token: Token) => token.token_category === props.params.category,
       );
       setTokens(tokensData);
       setIsLoading(false);
