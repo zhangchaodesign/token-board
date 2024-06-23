@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   TbContrast2Filled,
   TbCaretDownFilled,
-  TbArrowsSort,
+  TbGraphFilled,
 } from "react-icons/tb";
 
 type DropdownProps = {
@@ -29,7 +29,7 @@ export const Dropdown = (props: DropdownProps) => {
         {props.type === "display" ? (
           <TbContrast2Filled className="text-gray-800" size={20} />
         ) : (
-          <TbArrowsSort className="text-gray-800" size={20} />
+          <TbGraphFilled className="text-gray-800" size={20} />
         )}
         <div className="text-lg bg-transparent focus:outline-none flex-center flex-row select-none">
           <p className="text-gray-400 mr-2 text-nowrap">{props.placeholder}</p>
