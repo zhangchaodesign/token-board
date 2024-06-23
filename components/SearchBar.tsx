@@ -12,6 +12,7 @@ type SearchBarProps = {
   placeholder: string;
   onSelect?: (value: string) => void;
   addOn?: () => void;
+  small?: boolean;
 };
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -39,8 +40,14 @@ export const SearchBar = (props: SearchBarProps) => {
 
   return (
     <div className={cn(props.classes + " flex flex-row")}>
-      <div className="flex flex-row items-center gap-2 bg-white py-2 px-4 rounded relative border w-full">
-        <TbSearch className="text-gray-800" size={20} />
+      <div
+        className={
+          "flex flex-row items-center gap-2 bg-white py-2 rounded relative border w-full " +
+          (props.small ? "px-2" : "px-4")
+        }
+      >
+        {!props.small ? <TbSearch className="text-gray-800" size={20} /> : null}
+
         <input
           className="text-lg w-full bg-transparent focus:outline-none min-w-36"
           type="text"

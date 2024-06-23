@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/libs/utils";
 import { ModelBox } from "@/components/ModelBox";
-import { CategoryBox } from "@/components/homepage/CategoryBox";
+import { CategoryBox } from "@/components/CategoryBox";
 import { TbArrowBackUp } from "react-icons/tb";
 import { MODEL_DICT } from "@/libs/utils";
 import { SearchBar } from "@/components/SearchBar";
@@ -37,6 +37,7 @@ export const SideBar = (props: SideBarProps) => {
           candidateList={MODEL_DICT.map((item) => item.model)}
           placeholder="Search model ..."
           classes="w-[150px]"
+          small={true}
         />
         <CategoryBox classes="bg-gray-500" category={props.category} />
         <SearchBar
@@ -48,6 +49,7 @@ export const SideBar = (props: SideBarProps) => {
           candidateList={CATEGORY}
           placeholder="Search category ..."
           classes="w-[150px]"
+          small={true}
         />
       </div>
 

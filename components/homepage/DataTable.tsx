@@ -1,9 +1,9 @@
 import React, { useMemo, useEffect, useRef } from "react";
 import { cn } from "@/libs/utils";
 import { ModelBox } from "@/components/ModelBox";
-import { CategoryBox } from "@/components/homepage/CategoryBox";
+import { CategoryBox } from "@/components/CategoryBox";
 import { CellBox } from "@/components/homepage/CellBox";
-import { TotalBox } from "@/components/homepage/TotalBox";
+import { TotalBox } from "@/components/TotalBox";
 import { Overview, CellData } from "@/libs/type";
 
 type DataTableProps = {
