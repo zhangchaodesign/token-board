@@ -15,7 +15,9 @@ export const CellBox = (props: CellBoxProps) => {
   const [hover, setHover] = useState(false);
 
   return (
-    <Link href={`/gallery/${props.model}/${props.category}`}>
+    <Link
+      href={`/gallery/${props.model.toLowerCase()}/${props.category.toLowerCase()}`}
+    >
       <div
         className="cell-box"
         onMouseEnter={() => setHover(true)}
@@ -33,7 +35,7 @@ export const CellBox = (props: CellBoxProps) => {
             // width is calculated based on the percentage of the content
             {
               width: `${(props.content / props.total) * 100}%`,
-              backgroundColor: hover ? "#2563eb" : "#dbeafe",
+              backgroundColor: hover ? "#2563eb" : "#dbeafe"
             }
           }
         ></div>

@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/libs/utils";
 
 type CategoryBoxProps = {
-  classes: string;
+  classes?: string;
   category: string;
 };
 

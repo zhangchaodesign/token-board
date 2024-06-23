@@ -1,14 +1,14 @@
 import React, { useMemo, useEffect, useRef } from "react";
 import { cn } from "@/libs/utils";
-import { ModelBox } from "@/components/homepage/ModelBox";
+import { ModelBox } from "@/components/ModelBox";
 import { CategoryBox } from "@/components/homepage/CategoryBox";
 import { CellBox } from "@/components/homepage/CellBox";
 import { TotalBox } from "@/components/homepage/TotalBox";
-import { Data, CellData } from "@/libs/type";
+import { Overview, CellData } from "@/libs/type";
 
 type DataTableProps = {
-  classes: string;
-  data: Data;
+  classes?: string;
+  data: Overview;
   highlightCategory: string;
   displayMode: string;
   categorySortingMode: string;
@@ -21,15 +21,15 @@ export const DataTable = (props: DataTableProps) => {
     return props.data.sort((a, b) => {
       if (props.displayMode === "COUNT") {
         return (
-          Number(b[props.modelSortingMode as keyof Data[0]]) -
-          Number(a[props.modelSortingMode as keyof Data[0]])
+          Number(b[props.modelSortingMode as keyof Overview[0]]) -
+          Number(a[props.modelSortingMode as keyof Overview[0]])
         );
       } else if (props.displayMode === "PERCENTAGE") {
         return (
-          (Number(b[props.modelSortingMode as keyof Data[0]]) /
+          (Number(b[props.modelSortingMode as keyof Overview[0]]) /
             Number(b.total)) *
             100 -
-          (Number(a[props.modelSortingMode as keyof Data[0]]) /
+          (Number(a[props.modelSortingMode as keyof Overview[0]]) /
             Number(a.total)) *
             100
         );
@@ -56,11 +56,12 @@ export const DataTable = (props: DataTableProps) => {
         columns.slice(3).forEach((column) => {
           if (props.displayMode === "COUNT") {
             totalValue[column] =
-              (totalValue[column] || 0) + Number(item[column as keyof Data[0]]);
+              (totalValue[column] || 0) +
+              Number(item[column as keyof Overview[0]]);
           } else if (props.displayMode === "PERCENTAGE") {
             totalValue[column] =
               (totalValue[column] || 0) +
-              Number(item[column as keyof Data[0]]) / Number(item.total);
+              Number(item[column as keyof Overview[0]]) / Number(item.total);
           }
         });
       });
@@ -84,14 +85,14 @@ export const DataTable = (props: DataTableProps) => {
   useEffect(() => {
     if (headersRef.current) {
       const element = headersRef.current.querySelector(
-        `th[data-category="${props.highlightCategory.toUpperCase()}"]`,
+        `th[data-category="${props.highlightCategory.toUpperCase()}"]`
       );
       if (element) {
         //scroll into center
         element.scrollIntoView({
           behavior: "smooth",
           block: "center",
-          inline: "center",
+          inline: "center"
         });
       }
     }
