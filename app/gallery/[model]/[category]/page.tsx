@@ -17,6 +17,10 @@ export default function Gallery(props: GalleryProps) {
   const [searchToken, setSearchToken] = useState<string>("");
   const [searchMode, setSearchMode] = useState<string>("containing"); // containing, contained
   const [ifShader, setIfShader] = useState<boolean>(true);
+  const [tokenSortingMode, setTokenSortingMode] = useState<string>("ID"); // id, frequency
+  const tokenSortingModeList = ["ID", "FREQUENCY"];
+  const [filterValue, setFilterValue] = useState<number>(0);
+
   const [tokens, setTokens] = useState<Token[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -43,14 +47,35 @@ export default function Gallery(props: GalleryProps) {
             }
           }
         }
+
+        // filter the tokens by filterValue
+        if (filterValue > 0) {
+          isEligible = isEligible && token.count >= filterValue;
+        }
+
         return isEligible;
       });
+
+      // sort the tokens by tokenSortingMode
+      if (tokenSortingMode === "ID") {
+        tokensData.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
+      } else if (tokenSortingMode === "FREQUENCY") {
+        tokensData.sort((a: Token, b: Token) => b.count - a.count);
+      }
+
       setTokens(tokensData);
       setIsLoading(false);
     };
 
     fetchTokens();
-  }, [props.params.model, props.params.category, searchToken, searchMode]);
+  }, [
+    props.params.model,
+    props.params.category,
+    searchToken,
+    searchMode,
+    tokenSortingMode,
+    filterValue,
+  ]);
 
   if (isLoading) {
     return (
@@ -70,8 +95,13 @@ export default function Gallery(props: GalleryProps) {
         setSearchMode={setSearchMode}
         ifShader={ifShader}
         setIfShader={setIfShader}
+        tokenSortingMode={tokenSortingMode}
+        setTokenSortingMode={setTokenSortingMode}
+        tokenSortingModeList={tokenSortingModeList}
+        filterValue={filterValue}
+        setFilterValue={setFilterValue}
       />
-      <div className="absolute top-40 flex flex-row justify-start items-start gap-6 px-6">
+      <div className="absolute top-40 flex flex-row justify-start items-start gap-6 px-6 bg-gray-50">
         <SideBar
           classes="h-[80vh]"
           model={props.params.model}

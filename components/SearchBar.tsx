@@ -23,7 +23,7 @@ export const SearchBar = (props: SearchBarProps) => {
     if (value) {
       if (!props.candidateList) return;
       const filtered = props.candidateList.filter((candidate) =>
-        candidate.toLowerCase().includes(value.toLowerCase())
+        candidate.toLowerCase().includes(value.toLowerCase()),
       );
       setFilteredCategories(filtered);
     } else {
@@ -42,7 +42,7 @@ export const SearchBar = (props: SearchBarProps) => {
       <div className="flex flex-row items-center gap-2 bg-white py-2 px-4 rounded relative border w-full">
         <TbSearch className="text-gray-800" size={20} />
         <input
-          className="text-lg w-full bg-transparent focus:outline-none"
+          className="text-lg w-full bg-transparent focus:outline-none min-w-36"
           type="text"
           placeholder={props.placeholder}
           value={props.inputValue.toUpperCase()}

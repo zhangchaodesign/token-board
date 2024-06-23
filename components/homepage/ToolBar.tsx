@@ -3,7 +3,7 @@
 import React from "react";
 import { cn } from "@/libs/utils";
 import { SearchBar } from "@/components/SearchBar";
-import { DropdownTool } from "@/components/homepage/DropdownTool";
+import { Dropdown } from "@/components/Dropdown";
 import { CATEGORY } from "@/libs/utils";
 
 type ToolBarProps = {
@@ -25,10 +25,11 @@ export const ToolBar = (props: ToolBarProps) => {
   return (
     <div
       className={cn(
-        props.classes + " bg-gray-50 z-50 flex flex-row gap-1 items-center"
+        props.classes +
+          " bg-gray-50 z-50 flex flex-row gap-1 items-center w-screen overflow-auto",
       )}
     >
-      <div className="w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">
+      <div className="min-w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">
         Overview
       </div>
 
@@ -40,28 +41,31 @@ export const ToolBar = (props: ToolBarProps) => {
           placeholder="Search category ..."
         />
 
-        <DropdownTool
+        <Dropdown
           type="display"
           list={props.displayModeList}
           value={props.displayMode}
           setValue={props.setDisplayMode}
           placeholder="Display by "
+          enableSearch={false}
         />
 
-        <DropdownTool
+        <Dropdown
           type="sort"
           list={props.categorySortingModeList}
           value={props.categorySortingMode}
           setValue={props.setCategorySortingMode}
           placeholder="Sort Categories by "
+          enableSearch={false}
         />
 
-        <DropdownTool
+        <Dropdown
           type="sort"
           list={props.modelSortingModeList}
           value={props.modelSortingMode}
           setValue={props.setModelSortingMode}
           placeholder="Sort Models by "
+          enableSearch={true}
         />
       </div>
     </div>

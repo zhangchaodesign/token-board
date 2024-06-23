@@ -35,7 +35,7 @@ export const CellBox = (props: CellBoxProps) => {
             // width is calculated based on the percentage of the content
             {
               width: `${(props.content / props.total) * 100}%`,
-              backgroundColor: hover ? "#2563eb" : "#dbeafe"
+              backgroundColor: hover ? "#2563eb" : "#dbeafe",
             }
           }
         ></div>

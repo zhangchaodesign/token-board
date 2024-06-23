@@ -22,7 +22,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
       "bg-blue-400 text-white",
       "bg-blue-500 text-white",
       "bg-blue-600 text-white",
-      "bg-blue-700 text-white"
+      "bg-blue-700 text-white",
     ];
 
     if (props.ifShader) {
@@ -36,7 +36,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
     <div
       className={cn(
         props.classes +
-          " flex flex-wrap gap-2 overflow-y-auto items-start justify-start pb-4 pt-1"
+          " flex flex-wrap gap-2 overflow-y-auto items-start justify-start pb-4 pt-1 bg-gray-50",
       )}
     >
       {props.tokens.map((token, index) => (
@@ -45,6 +45,8 @@ export const TokenGallery = (props: TokenGalleryProps) => {
           className={
             noto_sans.className + " token-box " + _calc_color(token.count)
           }
+          // add tooltip to show the content
+          title={token.count.toString()}
         >
           {token.token}{" "}
         </div>
