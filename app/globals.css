@@ -66,7 +66,7 @@ td {
   }
 
   .token-box {
-    @apply px-4 py-2 bg-blue-50 rounded select-none hover:shadow-md transition hover:scale-105 duration-100 cursor-pointer;
+    @apply px-4 py-2 rounded select-none hover:shadow-md transition hover:scale-105 duration-100 cursor-pointer;
   }
 
   /* CONTAINERS */
