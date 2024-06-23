@@ -29,6 +29,12 @@ td {
   font-weight: normal;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr; /* 第一行自动大小，第二行填充剩余空间 */
+  height: 92vh;
+}
+
 @layer utilities {
   /* LINE */
   .line-dashed {
@@ -44,7 +50,7 @@ td {
   }
 
   /* BUTTON */
-  .btn {
+  .btn-black {
     @apply bg-gray-800 w-[150px] px-8 py-4 text-white uppercase transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
   }
 

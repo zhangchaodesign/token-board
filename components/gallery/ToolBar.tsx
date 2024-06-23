@@ -24,13 +24,14 @@ export const ToolBar = (props: ToolBarProps) => {
   return (
     <div
       className={cn(
-        props.classes + " bg-gray-50 flex flex-row gap-1 items-center z-50",
+        props.classes +
+          " bg-gray-50 flex flex-row gap-4 z-50 items-center px-6",
       )}
     >
       <div className="min-w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">
         Gallery
       </div>
-      <div className="flex-center flex-row gap-4">
+      <div className="flex gap-4 flex-wrap items-start justify-start">
         <SearchBar
           inputValue={props.searchToken}
           setInputValue={props.setSearchToken}

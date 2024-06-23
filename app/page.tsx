@@ -20,9 +20,9 @@ export default function Home() {
   const modelSortingModeList: string[] = CATEGORY;
 
   return (
-    <div className="">
+    <div className="grid-container pb-4">
       <ToolBar
-        classes="fixed top-16 left-0 p-4 w-full h-[12vh]"
+        classes="flex-none p-4 w-full"
         highlightCategory={highlightCategory}
         setHighlightCategory={setHighlightCategory}
         displayMode={displayMode}
@@ -37,7 +37,7 @@ export default function Home() {
       />
       <DataTable
         data={OVERVIEW}
-        classes="absolute top-40 px-6 pb-4"
+        classes="overflow-y-auto"
         highlightCategory={highlightCategory}
         displayMode={displayMode}
         categorySortingMode={categorySortingMode}

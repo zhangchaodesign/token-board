@@ -5,6 +5,8 @@ import { ToolBar } from "@/components/gallery/ToolBar";
 import { Token } from "@/libs/type";
 import { TokenGallery } from "@/components/gallery/TokenGallery";
 import { SideBar } from "@/components/gallery/SideBar";
+import Link from "next/link";
+import { TbArrowBackUp } from "react-icons/tb";
 
 type GalleryProps = {
   params: {
@@ -86,9 +88,9 @@ export default function Gallery(props: GalleryProps) {
   }
 
   return (
-    <div>
+    <div className="grid-container">
       <ToolBar
-        classes="fixed top-16 left-0 p-4 w-full h-[12vh]"
+        classes="flex-none p-4 w-full"
         searchToken={searchToken}
         setSearchToken={setSearchToken}
         searchMode={searchMode}
@@ -101,18 +103,22 @@ export default function Gallery(props: GalleryProps) {
         filterValue={filterValue}
         setFilterValue={setFilterValue}
       />
-      <div className="absolute top-40 flex flex-row justify-start items-start gap-6 px-6 bg-gray-50">
+      <div className="grow flex flex-row justify-start items-start gap-6 px-6 bg-gray-50 overflow-y-auto relative">
         <SideBar
-          classes="h-[80vh]"
+          classes="fixed"
           model={props.params.model}
           category={props.params.category}
         />
-        <TokenGallery
-          classes="max-h-[80vh]"
-          tokens={tokens}
-          ifShader={ifShader}
-        />
+        <TokenGallery classes="pl-44" tokens={tokens} ifShader={ifShader} />
       </div>
+
+      <Link
+        href={`/`}
+        className="btn-black m-1 flex-center gap-4 absolute bottom-4 left-6"
+      >
+        <TbArrowBackUp size={20} className="text-white" />
+        <button>BACK</button>
+      </Link>
     </div>
   );
 }

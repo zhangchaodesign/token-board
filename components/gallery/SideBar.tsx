@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/libs/utils";
 import { ModelBox } from "@/components/ModelBox";
 import { CategoryBox } from "@/components/CategoryBox";
-import { TbArrowBackUp } from "react-icons/tb";
 import { MODEL_DICT } from "@/libs/utils";
 import { SearchBar } from "@/components/SearchBar";
 import { CATEGORY } from "@/libs/utils";
@@ -52,11 +50,6 @@ export const SideBar = (props: SideBarProps) => {
           small={true}
         />
       </div>
-
-      <Link href={`/`} className="btn m-1 flex-center gap-4">
-        <TbArrowBackUp size={20} className="text-white" />
-        <button>BACK</button>
-      </Link>
     </div>
   );
 };

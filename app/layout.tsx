@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={roboto_condensed.className + " bg-gray-50 text-gray-800"}
+        className={
+          roboto_condensed.className + " bg-gray-50 text-gray-800 flex flex-col"
+        }
       >
         <Header />
         {children}

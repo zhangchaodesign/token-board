@@ -25,14 +25,15 @@ export const ToolBar = (props: ToolBarProps) => {
   return (
     <div
       className={cn(
-        props.classes + " bg-gray-50 flex flex-row gap-1 items-center z-50",
+        props.classes +
+          " bg-gray-50 flex flex-row gap-4 items-center z-50 px-6",
       )}
     >
       <div className="min-w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">
         Overview
       </div>
 
-      <div className="flex flex-row gap-4">
+      <div className="flex gap-4 flex-wrap items-start justify-start">
         <SearchBar
           inputValue={props.highlightCategory}
           setInputValue={props.setHighlightCategory}

@@ -102,10 +102,10 @@ export const DataTable = (props: DataTableProps) => {
     <div className={cn(props.classes + "")}>
       <table>
         <thead ref={headersRef}>
-          <tr className="sticky top-40 z-20 bg-gray-50 rounded">
+          <tr className="sticky top-0 z-20 bg-gray-50 rounded">
             <th
               key="model"
-              className="sticky left-6 top-40 z-30 bg-gray-50 rounded"
+              className="sticky left-6 top-0 z-30 bg-gray-50 rounded"
             >
               <div className="bg-gray-800 w-[258px] rounded py-2 text-white text-base m-1 flex-col flex-center select-none">
                 <p className="capitalize text-base">MODEL</p>

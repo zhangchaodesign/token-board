@@ -36,7 +36,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
     <div
       className={cn(
         props.classes +
-          " flex flex-wrap gap-2 overflow-y-auto items-start justify-start pb-4 pt-1 bg-gray-50",
+          " flex flex-wrap gap-2 items-start justify-start pb-4 pt-1 bg-gray-50",
       )}
     >
       {props.tokens.map((token, index) => (
