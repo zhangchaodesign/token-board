@@ -45,20 +45,23 @@ export const ToolBar = (props: ToolBarProps) => {
           list={props.displayModeList}
           value={props.displayMode}
           setValue={props.setDisplayMode}
+          placeholder="Display by "
         />
 
         <DropdownTool
-          type="category_sort"
+          type="sort"
           list={props.categorySortingModeList}
           value={props.categorySortingMode}
           setValue={props.setCategorySortingMode}
+          placeholder="Sort Categories by "
         />
 
         <DropdownTool
-          type="model_sort"
+          type="sort"
           list={props.modelSortingModeList}
           value={props.modelSortingMode}
           setValue={props.setModelSortingMode}
+          placeholder="Sort Models by "
         />
       </div>
     </div>

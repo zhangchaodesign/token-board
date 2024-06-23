@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   TbContrast2Filled,
   TbCaretDownFilled,
-  TbArrowsSort,
+  TbArrowsSort
 } from "react-icons/tb";
 
 type DropdownToolProps = {
@@ -10,6 +10,7 @@ type DropdownToolProps = {
   list: string[];
   value: string;
   setValue: (value: string) => void;
+  placeholder: string;
 };
 
 export const DropdownTool = (props: DropdownToolProps) => {
@@ -18,7 +19,7 @@ export const DropdownTool = (props: DropdownToolProps) => {
 
   // Filter list based on search term
   const filteredList = props.list.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase()),
+    item.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -30,13 +31,7 @@ export const DropdownTool = (props: DropdownToolProps) => {
           <TbArrowsSort className="text-gray-800" size={20} />
         )}
         <div className="text-lg bg-transparent focus:outline-none flex-center flex-row select-none">
-          <p className="text-gray-400 mr-2">
-            {props.type === "display"
-              ? "Display by "
-              : props.type === "category_sort"
-                ? "Sort Categories by "
-                : "Sort Models by "}
-          </p>
+          <p className="text-gray-400 mr-2">{props.placeholder}</p>
           <p className="underline">{props.value}</p>
         </div>
         <TbCaretDownFilled

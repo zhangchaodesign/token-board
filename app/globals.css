@@ -69,6 +69,11 @@ td {
     @apply px-4 py-2 rounded select-none hover:shadow-md transition hover:scale-105 duration-100 cursor-pointer;
   }
 
+  /* INPUT */
+  /* .checkbox:checked {
+    @apply text-gray-800 bg-gray-800 border-gray-800;
+  } */
+
   /* CONTAINERS */
   .max-container {
     @apply mx-auto max-w-[1440px];
