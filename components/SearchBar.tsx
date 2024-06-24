@@ -13,6 +13,7 @@ type SearchBarProps = {
   onSelect?: (value: string) => void;
   addOn?: () => void;
   small?: boolean;
+  caseInsensitive: boolean;
 };
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -23,9 +24,11 @@ export const SearchBar = (props: SearchBarProps) => {
     props.setInputValue(value);
     if (value) {
       if (!props.candidateList) return;
-      const filtered = props.candidateList.filter((candidate) =>
-        candidate.toLowerCase().includes(value.toLowerCase()),
-      );
+      const filtered = props.candidateList.filter((candidate) => {
+        if (props.caseInsensitive)
+          return candidate.toLowerCase().includes(value.toLowerCase());
+        return candidate.includes(value);
+      });
       setFilteredCategories(filtered);
     } else {
       setFilteredCategories([]);
@@ -49,10 +52,14 @@ export const SearchBar = (props: SearchBarProps) => {
         {!props.small ? <TbSearch className="text-gray-800" size={20} /> : null}
 
         <input
-          className="text-lg w-full bg-transparent focus:outline-none min-w-36"
+          className="text-base w-full bg-transparent focus:outline-none min-w-36"
           type="text"
           placeholder={props.placeholder}
-          value={props.inputValue.toUpperCase()}
+          value={
+            props.caseInsensitive
+              ? props.inputValue.toUpperCase()
+              : props.inputValue
+          }
           onChange={handleInputChange}
         />
         {props.addOn && (
@@ -64,15 +71,24 @@ export const SearchBar = (props: SearchBarProps) => {
         )}
         {filteredCategories.length > 0 && (
           <ul className="absolute left-0 top-12 w-full bg-white shadow-lg rounded mt-1 p-4 max-h-60 overflow-auto">
-            {filteredCategories.map((category) => (
-              <li
-                key={category}
-                className="p-2 hover:bg-gray-200 cursor-pointer"
-                onClick={() => handleCategorySelect(category)}
-              >
-                {category.toUpperCase()}
-              </li>
-            ))}
+            {filteredCategories.map(
+              (category) =>
+                category.toUpperCase() !== "UNKNOWN" && (
+                  <li
+                    key={category}
+                    className="p-2 hover:bg-gray-200 cursor-pointer"
+                    onClick={() => handleCategorySelect(category)}
+                  >
+                    {category.toUpperCase() === "N"
+                      ? "NUMBER"
+                      : category.toUpperCase() === "P"
+                        ? "PUNCTUATION"
+                        : category.toUpperCase() === "S"
+                          ? "SYMBOL"
+                          : category.toUpperCase()}
+                  </li>
+                ),
+            )}
           </ul>
         )}
       </div>

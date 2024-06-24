@@ -5,6 +5,7 @@ import { cn } from "@/libs/utils";
 import { SearchBar } from "@/components/SearchBar";
 import { Dropdown } from "@/components/Dropdown";
 import { CATEGORY } from "@/libs/utils";
+import { CheckBox } from "@/components/CheckBox";
 
 type ToolBarProps = {
   classes?: string;
@@ -19,6 +20,8 @@ type ToolBarProps = {
   modelSortingMode: string;
   setModelSortingMode: (mode: string) => void;
   modelSortingModeList: string[];
+  showPercentage: boolean;
+  setShowPercentage: (showPercentage: boolean) => void;
 };
 
 export const ToolBar = (props: ToolBarProps) => {
@@ -39,8 +42,9 @@ export const ToolBar = (props: ToolBarProps) => {
           setInputValue={props.setHighlightCategory}
           candidateList={CATEGORY}
           placeholder="Search category ..."
+          caseInsensitive={true}
         />
-
+        {/* 
         <Dropdown
           type="display"
           list={props.displayModeList}
@@ -48,6 +52,12 @@ export const ToolBar = (props: ToolBarProps) => {
           setValue={props.setDisplayMode}
           placeholder="Display by "
           enableSearch={false}
+        /> */}
+
+        <CheckBox
+          checked={props.showPercentage}
+          setChecked={props.setShowPercentage}
+          text="Show Percentage"
         />
 
         <Dropdown
@@ -55,7 +65,7 @@ export const ToolBar = (props: ToolBarProps) => {
           list={props.categorySortingModeList}
           value={props.categorySortingMode}
           setValue={props.setCategorySortingMode}
-          placeholder="Sort Categories by "
+          placeholder="Sort Categories by # Tokens in "
           enableSearch={false}
         />
 
@@ -64,7 +74,7 @@ export const ToolBar = (props: ToolBarProps) => {
           list={props.modelSortingModeList}
           value={props.modelSortingMode}
           setValue={props.setModelSortingMode}
-          placeholder="Sort Models by "
+          placeholder="Sort Models by # Tokens in "
           enableSearch={true}
         />
       </div>

@@ -11,7 +11,7 @@ export const FilterSlider = (props: FilterSliderProps) => {
     <div className="flex flex-row">
       <div className="flex flex-row items-center gap-2 bg-gray-100 py-2 px-4 rounded relative">
         <TbFilterFilled className="text-gray-800" size={20} />
-        <div className="text-lg bg-transparent focus:outline-none flex-between flex-row select-none">
+        <div className="text-base bg-transparent focus:outline-none flex-between flex-row select-none">
           <div className="flex-center flex-row gap-2">
             <p className="text-gray-400 text-nowrap">Filter Tokens</p>
             <input

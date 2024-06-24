@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/libs/utils";
 import { Dropdown } from "@/components/Dropdown";
 import { SearchBar } from "@/components/SearchBar";
-import { ShaderController } from "@/components/gallery/ShaderController";
+import { CheckBox } from "@/components/CheckBox";
 import { FilterSlider } from "@/components/gallery/FilterSlider";
 
 type ToolBarProps = {
@@ -40,7 +40,7 @@ export const ToolBar = (props: ToolBarProps) => {
               ? "Search tokens containing ..."
               : "Search tokens contained in ..."
           }
-          classes="w-80"
+          classes="w-72"
           addOn={() => {
             if (props.searchMode === "containing") {
               props.setSearchMode("contained");
@@ -48,11 +48,13 @@ export const ToolBar = (props: ToolBarProps) => {
               props.setSearchMode("containing");
             }
           }}
+          caseInsensitive={false}
         />
 
-        <ShaderController
-          ifShader={props.ifShader}
-          setIfShader={props.setIfShader}
+        <CheckBox
+          checked={props.ifShader}
+          setChecked={props.setIfShader}
+          text="Shade Tokens by Cross-Model Frequency"
         />
 
         <Dropdown

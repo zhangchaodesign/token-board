@@ -36,6 +36,7 @@ export const SideBar = (props: SideBarProps) => {
           placeholder="Search model ..."
           classes="w-[150px]"
           small={true}
+          caseInsensitive={true}
         />
         <CategoryBox classes="bg-gray-500" category={props.category} />
         <SearchBar
@@ -48,6 +49,7 @@ export const SideBar = (props: SideBarProps) => {
           placeholder="Search category ..."
           classes="w-[150px]"
           small={true}
+          caseInsensitive={true}
         />
       </div>
     </div>

@@ -39,13 +39,9 @@ export default function Gallery(props: GalleryProps) {
             isEligible = true;
           } else {
             if (searchMode === "containing") {
-              isEligible = token.token
-                .toLowerCase()
-                .includes(searchToken.toLowerCase());
+              isEligible = token.token.includes(searchToken);
             } else if (searchMode === "contained") {
-              isEligible = searchToken
-                .toLowerCase()
-                .includes(token.token.toLowerCase());
+              isEligible = searchToken.includes(token.token);
             }
           }
         }

@@ -9,6 +9,7 @@ type CellBoxProps = {
   displayMode: string;
   model: string;
   category: string;
+  showPercentage: boolean;
 };
 
 export const CellBox = (props: CellBoxProps) => {
@@ -28,6 +29,12 @@ export const CellBox = (props: CellBoxProps) => {
             ? props.content
             : ((props.content / props.total) * 100).toFixed(4) + "%"}
         </p>
+
+        {props.showPercentage && (
+          <p className="absolute text-xs bottom-1 right-1 z-[5]">
+            ({((props.content / props.total) * 100).toFixed(2) + "%"})
+          </p>
+        )}
 
         <div
           className="h-[64px] rounded-l absolute left-0"

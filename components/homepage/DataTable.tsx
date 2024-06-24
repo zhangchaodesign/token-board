@@ -13,6 +13,9 @@ type DataTableProps = {
   displayMode: string;
   categorySortingMode: string;
   modelSortingMode: string;
+  showPercentage: boolean;
+  setModelSortingMode: (mode: string) => void;
+  setHighlightCategory: (category: string) => void;
 };
 
 export const DataTable = (props: DataTableProps) => {
@@ -37,7 +40,7 @@ export const DataTable = (props: DataTableProps) => {
         return 0;
       }
     });
-  }, [props.data, props.modelSortingMode]);
+  }, [props.data, props.modelSortingMode, props.displayMode]);
 
   const columns = useMemo(() => {
     let columns = data.length > 0 ? Object.keys(data[0]) : [];
@@ -118,8 +121,13 @@ export const DataTable = (props: DataTableProps) => {
                   classes={
                     props.highlightCategory.toUpperCase() === column
                       ? "bg-gray-800"
-                      : "bg-gray-500"
+                      : "bg-gray-500" +
+                        " transition hover:scale-105 duration-100 hover:shadow-md hover:bg-gray-800 hover:text-white hover:border-none cursor-pointer"
                   }
+                  onClick={() => {
+                    props.setModelSortingMode(column);
+                    props.setHighlightCategory(column);
+                  }}
                 />
               </th>
             ))}
@@ -146,6 +154,7 @@ export const DataTable = (props: DataTableProps) => {
                     displayMode={props.displayMode}
                     model={item.model.toString()}
                     category={column}
+                    showPercentage={props.showPercentage}
                   />
                 </td>
               ))}

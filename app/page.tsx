@@ -7,7 +7,7 @@ import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
   const [highlightCategory, setHighlightCategory] = useState<string>("");
-  const [displayMode, setDisplayMode] = useState<string>("PERCENTAGE");
+  const [displayMode, setDisplayMode] = useState<string>("COUNT");
   const displayModeList: string[] = ["COUNT", "PERCENTAGE"];
   const [categorySortingMode, setCategorySortingMode] =
     useState<string>("DESCENDING ORDER");
@@ -18,6 +18,7 @@ export default function Home() {
   ];
   const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
   const modelSortingModeList: string[] = CATEGORY;
+  const [showPercentage, setShowPercentage] = useState<boolean>(true);
 
   return (
     <div className="grid-container pb-4">
@@ -34,6 +35,8 @@ export default function Home() {
         modelSortingMode={modelSortingMode}
         setModelSortingMode={setModelSortingMode}
         modelSortingModeList={modelSortingModeList}
+        showPercentage={showPercentage}
+        setShowPercentage={setShowPercentage}
       />
       <DataTable
         data={OVERVIEW}
@@ -42,6 +45,9 @@ export default function Home() {
         displayMode={displayMode}
         categorySortingMode={categorySortingMode}
         modelSortingMode={modelSortingMode}
+        showPercentage={showPercentage}
+        setModelSortingMode={setModelSortingMode}
+        setHighlightCategory={setHighlightCategory}
       />
     </div>
   );

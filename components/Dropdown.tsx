@@ -31,7 +31,7 @@ export const Dropdown = (props: DropdownProps) => {
         ) : (
           <TbGraphFilled className="text-gray-800" size={20} />
         )}
-        <div className="text-lg bg-transparent focus:outline-none flex-center flex-row select-none">
+        <div className="text-base bg-transparent focus:outline-none flex-center flex-row select-none">
           <p className="text-gray-400 mr-2 text-nowrap">{props.placeholder}</p>
           <p className="underline text-nowrap">{props.value}</p>
         </div>

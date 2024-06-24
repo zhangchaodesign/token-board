@@ -1,23 +1,24 @@
 import React from "react";
 import { TbSquare, TbSquareCheckFilled } from "react-icons/tb";
 
-type ShaderControllerProps = {
-  ifShader: boolean;
-  setIfShader: (value: boolean) => void;
+type CheckBoxProps = {
+  checked: boolean;
+  setChecked: (value: boolean) => void;
+  text: string;
 };
 
-export const ShaderController = (props: ShaderControllerProps) => {
+export const CheckBox = (props: CheckBoxProps) => {
   return (
     <div className="flex flex-row">
       <div className="flex flex-row items-center gap-2 bg-gray-100 py-2 px-4 rounded relative">
         <div
           onClick={() => {
-            props.setIfShader(!props.ifShader);
+            props.setChecked(!props.checked);
           }}
         >
           {
             // check box
-            props.ifShader ? (
+            props.checked ? (
               <TbSquareCheckFilled
                 className="text-gray-800 cursor-pointer"
                 size={20}
@@ -28,9 +29,8 @@ export const ShaderController = (props: ShaderControllerProps) => {
           }
         </div>
 
-        <div className="text-lg bg-transparent focus:outline-none flex-center flex-row select-none">
-          <p className="text-gray-400 mr-2 text-nowrap">Shade Tokens by</p>
-          <p className="underline text-nowrap">Frequency Across Models</p>
+        <div className="text-base bg-transparent focus:outline-none flex-center flex-row select-none">
+          <p className="text-nowrap">{props.text}</p>
         </div>
       </div>
     </div>
