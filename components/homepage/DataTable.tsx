@@ -99,13 +99,13 @@ export const DataTable = (props: DataTableProps) => {
   }, [props.highlightCategory]);
 
   return (
-    <div className={cn(props.classes + "")}>
+    <div className={cn(props.classes + " px-6")}>
       <table>
         <thead ref={headersRef}>
           <tr className="sticky top-0 z-20 bg-gray-50 rounded">
             <th
               key="model"
-              className="sticky left-6 top-0 z-30 bg-gray-50 rounded"
+              className="sticky left-0 top-0 z-30 bg-gray-50 rounded"
             >
               <div className="bg-gray-800 w-[258px] rounded py-2 text-white text-base m-1 flex-col flex-center select-none">
                 <p className="capitalize text-base">MODEL</p>
@@ -130,7 +130,7 @@ export const DataTable = (props: DataTableProps) => {
             <tr key={index}>
               <th
                 key="model"
-                className="sticky left-6 z-10 bg-gray-50 flex flex-row rounded"
+                className="sticky left-0 z-10 bg-gray-50 flex flex-row rounded"
               >
                 <ModelBox
                   model={item.model.toString()}
