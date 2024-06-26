@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/libs/utils";
+import { cn, expand_abbr } from "@/libs/utils";
 
 type CategoryBoxProps = {
   classes?: string;
@@ -13,15 +13,7 @@ export const CategoryBox = (props: CategoryBoxProps) => {
       className={cn(props.classes + " col-title-box")}
       onClick={props.onClick}
     >
-      <p className="capitalize text-base">
-        {props.category.toUpperCase() === "N"
-          ? "NUMBER"
-          : props.category.toUpperCase() === "P"
-            ? "PUNCTUATION"
-            : props.category.toUpperCase() === "S"
-              ? "SYMBOL"
-              : props.category.toUpperCase()}
-      </p>
+      <p className="capitalize text-base">{expand_abbr(props.category)}</p>
     </div>
   );
 };

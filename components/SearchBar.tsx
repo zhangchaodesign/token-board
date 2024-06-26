@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { cn } from "@/libs/utils";
+import { cn, expand_abbr } from "@/libs/utils";
 import { TbSearch, TbSwitch3 } from "react-icons/tb";
 
 type SearchBarProps = {
@@ -57,8 +57,8 @@ export const SearchBar = (props: SearchBarProps) => {
           placeholder={props.placeholder}
           value={
             props.caseInsensitive
-              ? props.inputValue.toUpperCase()
-              : props.inputValue
+              ? expand_abbr(props.inputValue.toUpperCase())
+              : expand_abbr(props.inputValue)
           }
           onChange={handleInputChange}
         />
@@ -79,13 +79,7 @@ export const SearchBar = (props: SearchBarProps) => {
                     className="p-2 hover:bg-gray-200 cursor-pointer"
                     onClick={() => handleCategorySelect(category)}
                   >
-                    {category.toUpperCase() === "N"
-                      ? "NUMBER"
-                      : category.toUpperCase() === "P"
-                        ? "PUNCTUATION"
-                        : category.toUpperCase() === "S"
-                          ? "SYMBOL"
-                          : category.toUpperCase()}
+                    {expand_abbr(category)}
                   </li>
                 ),
             )}
