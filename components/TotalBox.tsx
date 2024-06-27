@@ -1,7 +1,7 @@
 import React from "react";
 
 type TotalBoxProps = {
-  content: string;
+  content: string | undefined;
 };
 
 export const TotalBox = (props: TotalBoxProps) => {

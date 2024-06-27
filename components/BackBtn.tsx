@@ -11,7 +11,7 @@ export const BackBtn = (props: BackBtnProps) => {
 
   return (
     <button
-      className="btn-black m-1 flex-center gap-4 absolute bottom-4 left-6"
+      className="btn-black m-1 flex-center gap-4 absolute bottom-4 left-6 z-50"
       onClick={() => router.back()}
     >
       <TbArrowBackUp size={20} className="text-white" />

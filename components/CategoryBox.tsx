@@ -13,7 +13,9 @@ export const CategoryBox = (props: CategoryBoxProps) => {
       className={cn(props.classes + " col-title-box")}
       onClick={props.onClick}
     >
-      <p className="capitalize text-base">{expand_abbr(props.category)}</p>
+      <p className="capitalize text-base">
+        {expand_abbr(props.category).toUpperCase()}
+      </p>
     </div>
   );
 };

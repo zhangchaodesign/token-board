@@ -5,7 +5,6 @@ import { ToolBar } from "@/components/gallery/ToolBar";
 import { Token } from "@/libs/type";
 import { TokenGallery } from "@/components/gallery/TokenGallery";
 import { SideBar } from "@/components/gallery/SideBar";
-import { TbArrowBackUp } from "react-icons/tb";
 import { BackBtn } from "@/components/BackBtn";
 
 type GalleryProps = {
@@ -105,7 +104,12 @@ export default function Gallery(props: GalleryProps) {
           model={props.params.model}
           category={props.params.category}
         />
-        <TokenGallery classes="pl-44" tokens={tokens} ifShader={ifShader} />
+        <TokenGallery
+          classes="pl-44"
+          category={props.params.category}
+          tokens={tokens}
+          ifShader={ifShader}
+        />
       </div>
 
       <BackBtn />
