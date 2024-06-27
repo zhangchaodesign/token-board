@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/libs/utils";
 import { Token } from "@/libs/type";
 import { Noto_Sans } from "next/font/google";
+import Link from "next/link";
 
 type TokenGalleryProps = {
   classes?: string;
@@ -40,16 +41,18 @@ export const TokenGallery = (props: TokenGalleryProps) => {
       )}
     >
       {props.tokens.map((token, index) => (
-        <div
-          key={index}
-          className={
-            noto_sans.className + " token-box " + _calc_color(token.count)
-          }
-          // add tooltip to show the content
-          title={token.count.toString()}
-        >
-          {token.token}{" "}
-        </div>
+        <Link href={`/token/${token.token_idx}`}>
+          <div
+            key={index}
+            className={
+              noto_sans.className + " token-box " + _calc_color(token.count)
+            }
+            // add tooltip to show the content
+            title={token.count.toString()}
+          >
+            {token.token}{" "}
+          </div>
+        </Link>
       ))}
     </div>
   );

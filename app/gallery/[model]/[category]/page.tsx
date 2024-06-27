@@ -5,8 +5,8 @@ import { ToolBar } from "@/components/gallery/ToolBar";
 import { Token } from "@/libs/type";
 import { TokenGallery } from "@/components/gallery/TokenGallery";
 import { SideBar } from "@/components/gallery/SideBar";
-import Link from "next/link";
 import { TbArrowBackUp } from "react-icons/tb";
+import { BackBtn } from "@/components/BackBtn";
 
 type GalleryProps = {
   params: {
@@ -108,13 +108,7 @@ export default function Gallery(props: GalleryProps) {
         <TokenGallery classes="pl-44" tokens={tokens} ifShader={ifShader} />
       </div>
 
-      <Link
-        href={`/`}
-        className="btn-black m-1 flex-center gap-4 absolute bottom-4 left-6"
-      >
-        <TbArrowBackUp size={20} className="text-white" />
-        <button>BACK</button>
-      </Link>
+      <BackBtn />
     </div>
   );
 }
