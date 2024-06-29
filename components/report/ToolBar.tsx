@@ -7,10 +7,9 @@ import { FilterSlider } from "@/components/FilterSlider";
 
 type ToolBarProps = {
   classes?: string;
+  baseToken: string;
   searchToken: string;
   setSearchToken: (token: string) => void;
-  searchMode: string;
-  setSearchMode: (mode: string) => void;
   ifShader: boolean;
   setIfShader: (ifShader: boolean) => void;
   tokenSortingMode: string;
@@ -29,25 +28,16 @@ export const ToolBar = (props: ToolBarProps) => {
       )}
     >
       <div className="min-w-[150px] font-medium text-2xl flex-center text-center uppercase m-1">
-        Gallery
+        Token
       </div>
       <div className="flex gap-4 flex-wrap items-start justify-start">
         <SearchBar
           inputValue={props.searchToken}
           setInputValue={props.setSearchToken}
           placeholder={
-            props.searchMode === "containing"
-              ? "Search tokens containing ..."
-              : "Search tokens contained in ..."
+            "Search tokens containing " + props.baseToken + " and ..."
           }
           classes="w-72"
-          addOn={() => {
-            if (props.searchMode === "containing") {
-              props.setSearchMode("contained");
-            } else {
-              props.setSearchMode("containing");
-            }
-          }}
           caseInsensitive={false}
         />
 

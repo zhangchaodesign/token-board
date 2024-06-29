@@ -51,7 +51,7 @@ td {
 
   /* BUTTON */
   .btn-black {
-    @apply bg-gray-800 w-[150px] px-8 py-4 text-white uppercase transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
+    @apply bg-gray-800 w-[150px] px-4 py-4 text-white uppercase transition-all hover:bg-black flex flex-row justify-center items-center gap-1 rounded;
   }
 
   /* TABLE */

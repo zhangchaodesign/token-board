@@ -56,9 +56,15 @@ export const SearchBar = (props: SearchBarProps) => {
           type="text"
           placeholder={props.placeholder}
           value={
-            props.caseInsensitive
-              ? expand_abbr(props.inputValue.toUpperCase())
-              : expand_abbr(props.inputValue)
+            props.candidateList
+              ? expand_abbr(
+                  props.caseInsensitive
+                    ? props.inputValue.toUpperCase()
+                    : props.inputValue,
+                )
+              : props.caseInsensitive
+                ? props.inputValue.toUpperCase()
+                : props.inputValue
           }
           onChange={handleInputChange}
         />

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { ToolBar } from "@/components/token/ToolBar";
+import React, { useEffect, useMemo, useState } from "react";
+import { ToolBar } from "@/components/report/ToolBar";
 import { BackBtn } from "@/components/BackBtn";
 import { ModelBox } from "@/components/ModelBox";
 import { TotalBox } from "@/components/TotalBox";
@@ -19,6 +19,11 @@ type ReportProps = {
 
 export default function Report(props: ReportProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [searchToken, setSearchToken] = useState<string>("");
+  const [ifShader, setIfShader] = useState<boolean>(true);
+  const [tokenSortingMode, setTokenSortingMode] = useState<string>("FREQUENCY"); // id, frequency
+  const tokenSortingModeList = ["ID", "FREQUENCY"];
+  const [filterValue, setFilterValue] = useState<number>(0);
 
   // map MODEL_DICT to create a default data object to store the token data using useState
   type tokenData = {
@@ -26,13 +31,15 @@ export default function Report(props: ReportProps) {
     model: string;
     tokens: Token[];
   };
-  const [tokensData, setTokensData] = useState<tokenData[]>();
+
+  const [orginalTokenList, setOrginalTokenList] = useState<tokenData[]>();
+  const [displayedTokenList, setDisplayedTokenList] = useState<tokenData[]>();
 
   useMemo(() => {
     const fetchTokens = async () => {
       setIsLoading(true);
       let data: tokenData[] = [];
-      let searchToken = decodeURIComponent(props.params.token);
+      let baseToken = decodeURIComponent(props.params.token);
 
       // map MODEL_DICT
       for (let i = 0; i < MODEL_DICT.length; i++) {
@@ -46,7 +53,7 @@ export default function Report(props: ReportProps) {
         const tokensData = tokenDataModule.default.filter((token: Token) => {
           let isEligible = false;
           if (token.token_category?.toLowerCase() === props.params.category) {
-            if (token.token) isEligible = token.token.includes(searchToken);
+            if (token.token) isEligible = token.token.includes(baseToken);
           }
 
           return isEligible;
@@ -60,12 +67,54 @@ export default function Report(props: ReportProps) {
         });
       }
 
-      setTokensData(data);
+      setOrginalTokenList(data);
+      setDisplayedTokenList(data);
       setIsLoading(false);
     };
 
     fetchTokens();
   }, [props.params.token, props.params.tokenId]);
+
+  useEffect(() => {
+    if (isLoading || orginalTokenList === undefined) {
+      return;
+    }
+
+    // filter tokensData by token.token.includes(searchToken);
+    let data: tokenData[] = [];
+
+    data = orginalTokenList.map((item) => {
+      let tokensData = item.tokens.filter((token) => {
+        let isEligible = false;
+        isEligible = token.token.includes(searchToken);
+        // filter the tokens by filterValue
+        if (filterValue > 0) {
+          isEligible = isEligible && token.count >= filterValue;
+        }
+
+        return isEligible;
+      });
+
+      // sort the tokens by tokenSortingMode
+      if (tokenSortingMode === "ID") {
+        console.log("sorting by ID");
+        tokensData.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
+      } else if (tokenSortingMode === "FREQUENCY") {
+        console.log("sorting by frequency");
+        tokensData.sort((a: Token, b: Token) => b.count - a.count);
+      }
+
+      return {
+        company: item.company,
+        model: item.model,
+        tokens: tokensData,
+      };
+    });
+
+    data.sort((a, b) => b.tokens.length - a.tokens.length);
+
+    setDisplayedTokenList(data);
+  }, [orginalTokenList, searchToken, tokenSortingMode, filterValue]);
 
   if (isLoading) {
     return (
@@ -77,32 +126,41 @@ export default function Report(props: ReportProps) {
 
   return (
     <div className="grid-container">
-      <ToolBar classes="flex-none p-4 w-full" />
+      <ToolBar
+        classes="flex-none p-4 w-full"
+        searchToken={searchToken}
+        setSearchToken={setSearchToken}
+        baseToken={decodeURIComponent(props.params.token)}
+        ifShader={ifShader}
+        setIfShader={setIfShader}
+        tokenSortingMode={tokenSortingMode}
+        setTokenSortingMode={setTokenSortingMode}
+        tokenSortingModeList={tokenSortingModeList}
+        filterValue={filterValue}
+        setFilterValue={setFilterValue}
+      />
+
       <div className="grow flex flex-row justify-start items-start gap-6 px-6 bg-gray-50 overflow-y-auto relative">
-        <div className="flex flex-col gap-2 pb-24">
-          {tokensData &&
-            tokensData.map((item) => {
+        <div className="flex flex-col pb-24">
+          {displayedTokenList &&
+            displayedTokenList.map((item) => {
               return (
-                <div className="flex flex-row gap-2">
+                <div key={item.model} className="flex flex-row">
                   <div
-                    className="flex flex-row gap-2 sticky left-0 z-10 bg-gray-50  rounded"
+                    className="flex flex-row sticky left-0 z-10 bg-gray-50  rounded"
                     id="row-title"
                   >
-                    <ModelBox
-                      key={item.model}
-                      company={item.company}
-                      model={item.model}
-                    />
+                    <ModelBox company={item.company} model={item.model} />
                     <TotalBox content={item.tokens.length.toString()} />
                   </div>
 
-                  <div className="flex flex-row gap-1" id="row-data">
+                  <div className="flex flex-row" id="row-data">
                     {item.tokens.map((token, index) => {
                       return (
                         <TokenBox
                           key={index}
                           token={token}
-                          ifShader={false}
+                          ifShader={ifShader}
                           classes="m-1"
                           category={props.params.category}
                         />

@@ -5,11 +5,12 @@ type CheckBoxProps = {
   checked: boolean;
   setChecked: (value: boolean) => void;
   text: string;
+  title?: string;
 };
 
 export const CheckBox = (props: CheckBoxProps) => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row" title={props.title}>
       <div className="flex flex-row items-center gap-2 bg-gray-100 py-2 px-4 rounded relative">
         <div
           onClick={() => {
