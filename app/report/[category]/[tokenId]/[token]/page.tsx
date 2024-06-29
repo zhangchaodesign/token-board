@@ -73,7 +73,7 @@ export default function Report(props: ReportProps) {
     };
 
     fetchTokens();
-  }, [props.params.token, props.params.tokenId]);
+  }, [props.params.token, props.params.category]);
 
   useEffect(() => {
     if (isLoading || orginalTokenList === undefined) {
@@ -114,7 +114,7 @@ export default function Report(props: ReportProps) {
     data.sort((a, b) => b.tokens.length - a.tokens.length);
 
     setDisplayedTokenList(data);
-  }, [orginalTokenList, searchToken, tokenSortingMode, filterValue]);
+  }, [orginalTokenList, searchToken, tokenSortingMode, filterValue, isLoading]);
 
   if (isLoading) {
     return (

@@ -81,7 +81,7 @@ export const DataTable = (props: DataTableProps) => {
     // add the first 3 columns back to the beginning
     columns = columns.slice(0, 3).concat(columns);
     return columns;
-  }, [props.data, props.categorySortingMode]);
+  }, [props.data, props.categorySortingMode, props.displayMode, data]);
 
   const headersRef = useRef<HTMLTableSectionElement>(null);
 
