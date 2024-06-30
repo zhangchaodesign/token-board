@@ -36,7 +36,7 @@ export const TokenBox = (props: TokenBoxProps) => {
 
   return (
     <Link
-      href={`/report/${props.category}/${props.token.token_idx}/${props.token.token}`}
+      href={`/report/${props.category}/${props.token.token_idx}/${encodeURIComponent(props.token.token)}`}
       className={
         cn(props.classes) +
         " token-box flex-center " +

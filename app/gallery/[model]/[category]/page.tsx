@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ToolBar } from "@/components/gallery/ToolBar";
 import { Token } from "@/libs/type";
 import { TokenGallery } from "@/components/gallery/TokenGallery";
@@ -25,13 +25,29 @@ export default function Gallery(props: GalleryProps) {
   const [tokens, setTokens] = useState<Token[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  const [displayedTokens, setDisplayedTokens] = useState<Token[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const tokensPerPage = 1000;
+
+  const loadMoreTokens = useCallback(() => {
+    const nextPage = currentPage + 1;
+    const nextTokens = tokens.slice(0, (nextPage + 1) * tokensPerPage);
+    setDisplayedTokens(nextTokens);
+    setCurrentPage(nextPage);
+  }, [currentPage, tokens]);
+
+  // 初始化时加载第一页 tokens
+  useEffect(() => {
+    setDisplayedTokens(tokens.slice(0, tokensPerPage));
+  }, [tokens]);
+
   useEffect(() => {
     const fetchTokens = async () => {
       setIsLoading(true);
       const tokenDataModule = await import(
         `@/data/tokens/${props.params.model.toLowerCase()}.js`
       );
-      const tokensData = tokenDataModule.default.filter((token: Token) => {
+      const data = tokenDataModule.default.filter((token: Token) => {
         let isEligible = false;
         if (token.token_category?.toLowerCase() === props.params.category) {
           if (searchToken === "") {
@@ -55,12 +71,12 @@ export default function Gallery(props: GalleryProps) {
 
       // sort the tokens by tokenSortingMode
       if (tokenSortingMode === "ID") {
-        tokensData.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
+        data.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
       } else if (tokenSortingMode === "FREQUENCY") {
-        tokensData.sort((a: Token, b: Token) => b.count - a.count);
+        data.sort((a: Token, b: Token) => b.count - a.count);
       }
 
-      setTokens(tokensData);
+      setTokens(data);
       setIsLoading(false);
     };
 
@@ -107,8 +123,9 @@ export default function Gallery(props: GalleryProps) {
         <TokenGallery
           classes="pl-44"
           category={props.params.category}
-          tokens={tokens}
+          tokens={displayedTokens}
           ifShader={ifShader}
+          loadMoreTokens={loadMoreTokens}
         />
       </div>
 
