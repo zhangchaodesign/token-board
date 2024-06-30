@@ -24,7 +24,7 @@ export const TokenBox = (props: TokenBoxProps) => {
       "bg-blue-500 text-white",
       "bg-blue-600 text-white",
       "bg-blue-700 text-white",
-      "bg-blue-800 text-white"
+      "bg-blue-800 text-white",
     ];
 
     if (props.ifShader) {

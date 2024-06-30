@@ -3,8 +3,6 @@ import { cn } from "@/libs/utils";
 import { Token } from "@/libs/type";
 import { TokenBox } from "../TokenBox";
 
-import Link from "next/link";
-
 type TokenGalleryProps = {
   classes?: string;
   tokens: Token[];

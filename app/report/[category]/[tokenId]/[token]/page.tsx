@@ -38,33 +38,33 @@ export default function Report(props: ReportProps) {
   useMemo(() => {
     const fetchTokens = async () => {
       setIsLoading(true);
-      let data: tokenData[] = [];
+      let data = [];
       let baseToken = decodeURIComponent(props.params.token);
 
-      // map MODEL_DICT
-      for (let i = 0; i < MODEL_DICT.length; i++) {
-        // import data based on model name, reverse UTF-8 encoding
+      // check if window is defined
+      if (typeof window !== "undefined") {
+        for (let i = 0; i < MODEL_DICT.length; i++) {
+          // dynamically import the token data based on the model
+          const tokenDataModule = await import(
+            `@/data/tokens/${MODEL_DICT[i].model.toLowerCase()}.js`
+          );
 
-        const tokenDataModule = await import(
-          `@/data/tokens/${MODEL_DICT[i].model.toLowerCase()}.js`
-        );
+          // filter the token data based on the category and baseToken
+          const tokensData = tokenDataModule.default.filter((token: Token) => {
+            let isEligible = false;
+            if (token.token_category?.toLowerCase() === props.params.category) {
+              if (token.token) isEligible = token.token.includes(baseToken);
+            }
+            return isEligible;
+          });
 
-        // filter the tokens by token and token category
-        const tokensData = tokenDataModule.default.filter((token: Token) => {
-          let isEligible = false;
-          if (token.token_category?.toLowerCase() === props.params.category) {
-            if (token.token) isEligible = token.token.includes(baseToken);
-          }
-
-          return isEligible;
-        });
-
-        // set the tokens to the data object
-        data.push({
-          company: MODEL_DICT[i].company,
-          model: MODEL_DICT[i].model,
-          tokens: tokensData,
-        });
+          // add the token data to the data object
+          data.push({
+            company: MODEL_DICT[i].company,
+            model: MODEL_DICT[i].model,
+            tokens: tokensData,
+          });
+        }
       }
 
       setOrginalTokenList(data);
