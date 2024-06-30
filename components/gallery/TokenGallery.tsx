@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/libs/utils";
 import { Token } from "@/libs/type";
-import { TokenBox } from "../TokenBox";
+import { TokenBox } from "@/components/TokenBox";
 
 type TokenGalleryProps = {
   classes?: string;
   tokens: Token[];
   ifShader: boolean;
   category: string;
-  loadMoreTokens: () => void; // 新增加载更多tokens的函数
+  loadMoreTokens: () => void;
 };
 
 export const TokenGallery = (props: TokenGalleryProps) => {
@@ -44,7 +44,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
   }, [props.tokens]);
 
   return (
-    <div className="w-full">
+    <div>
       <div
         className={cn(
           props.classes +

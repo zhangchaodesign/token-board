@@ -36,7 +36,6 @@ export default function Gallery(props: GalleryProps) {
     setCurrentPage(nextPage);
   }, [currentPage, tokens]);
 
-  // 初始化时加载第一页 tokens
   useEffect(() => {
     setDisplayedTokens(tokens.slice(0, tokensPerPage));
   }, [tokens]);
