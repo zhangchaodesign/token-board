@@ -48,7 +48,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
       <div
         className={cn(
           props.classes +
-            " flex flex-wrap gap-2 items-start justify-start pb-4 pt-1 bg-gray-50",
+            " flex flex-wrap gap-2 items-start justify-start pb-4 pt-1 bg-gray-50"
         )}
       >
         {displayedTokens.map((token, index) => (
@@ -62,7 +62,7 @@ export const TokenGallery = (props: TokenGalleryProps) => {
       </div>
 
       <div ref={loadMoreRef} className="flex justify-center my-4">
-        <span className="loading loading-spinner loading-sm"></span>
+        {/* <span className="loading loading-spinner loading-sm"></span> */}
       </div>
     </div>
   );
