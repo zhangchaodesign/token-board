@@ -7,6 +7,7 @@ import OVERVIEW from "@/data/overview";
 import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
+  // set the default states
   const [highlightCategory, setHighlightCategory] = useState<string>("");
   const [displayMode, setDisplayMode] = useState<string>("COUNT");
   const displayModeList: string[] = ["COUNT", "PERCENTAGE"];
@@ -15,7 +16,7 @@ export default function Home() {
   const categorySortingModeList: string[] = [
     "ALPHABETICAL ORDER",
     "ASCENDING ORDER",
-    "DESCENDING ORDER",
+    "DESCENDING ORDER"
   ];
   const [modelSortingMode, setModelSortingMode] = useState<string>("LATIN");
   const modelSortingModeList: string[] = CATEGORY;
