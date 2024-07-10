@@ -7,7 +7,6 @@ import OVERVIEW from "@/data/overview";
 import { CATEGORY } from "@/libs/utils";
 
 export default function Home() {
-  // set the default states
   const [highlightCategory, setHighlightCategory] = useState<string>("");
   const [displayMode, setDisplayMode] = useState<string>("COUNT");
   const displayModeList: string[] = ["COUNT", "PERCENTAGE"];

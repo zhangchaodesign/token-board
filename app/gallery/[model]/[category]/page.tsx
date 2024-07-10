@@ -43,40 +43,44 @@ export default function Gallery(props: GalleryProps) {
   useEffect(() => {
     const fetchTokens = async () => {
       setIsLoading(true);
-      const tokenDataModule = await import(
-        `@/data/tokens/${props.params.model.toLowerCase()}.js`
-      );
-      const data = tokenDataModule.default.filter((token: Token) => {
-        let isEligible = false;
-        if (token.token_category?.toLowerCase() === props.params.category) {
-          if (searchToken === "") {
-            isEligible = true;
-          } else {
-            if (searchMode === "containing") {
-              isEligible = token.token.includes(searchToken);
-            } else if (searchMode === "contained") {
-              isEligible = searchToken.includes(token.token);
+
+      // check if window is defined
+      if (typeof window !== "undefined") {
+        const tokenDataModule = await import(
+          `@/data/tokens/${props.params.model.toLowerCase()}.js`
+        );
+        const data = tokenDataModule.default.filter((token: Token) => {
+          let isEligible = false;
+          if (token.token_category?.toLowerCase() === props.params.category) {
+            if (searchToken === "") {
+              isEligible = true;
+            } else {
+              if (searchMode === "containing") {
+                isEligible = token.token.includes(searchToken);
+              } else if (searchMode === "contained") {
+                isEligible = searchToken.includes(token.token);
+              }
             }
           }
+
+          // filter the tokens by filterValue
+          if (filterValue > 0) {
+            isEligible = isEligible && token.count >= filterValue;
+          }
+
+          return isEligible;
+        });
+
+        // sort the tokens by tokenSortingMode
+        if (tokenSortingMode === "ID") {
+          data.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
+        } else if (tokenSortingMode === "FREQUENCY") {
+          data.sort((a: Token, b: Token) => b.count - a.count);
         }
 
-        // filter the tokens by filterValue
-        if (filterValue > 0) {
-          isEligible = isEligible && token.count >= filterValue;
-        }
-
-        return isEligible;
-      });
-
-      // sort the tokens by tokenSortingMode
-      if (tokenSortingMode === "ID") {
-        data.sort((a: Token, b: Token) => a.token_idx - b.token_idx);
-      } else if (tokenSortingMode === "FREQUENCY") {
-        data.sort((a: Token, b: Token) => b.count - a.count);
+        setTokens(data);
+        setIsLoading(false);
       }
-
-      setTokens(data);
-      setIsLoading(false);
     };
 
     fetchTokens();
@@ -86,7 +90,7 @@ export default function Gallery(props: GalleryProps) {
     searchToken,
     searchMode,
     tokenSortingMode,
-    filterValue,
+    filterValue
   ]);
 
   if (isLoading) {
