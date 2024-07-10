@@ -32,6 +32,37 @@ export const Header = () => {
             className="fixed inset-0 bg-black bg-opacity-50 z-[99999]"
             onClick={handleClose}
           ></div>{" "}
+          <div className="fixed inset-0 flex justify-center items-center z-[100000]">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+              <div className="flex flex-row items-center justify-between mb-4">
+                <p className="font-medium text-xl">Hello 👋</p>
+                <TbX
+                  size={24}
+                  onClick={handleClose}
+                  className="cursor-pointer"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <p>
+                  This tool was designed and developed by Chao Zhang, a Ph.D.
+                  student in Human-Computer Interaction at Cornell University.
+                </p>
+                <p className="text-gray-500">
+                  Personal site:{" "}
+                  <a href="https://zhangchaodesign.com/" className="underline">
+                    https://zhangchaodesign.com/
+                  </a>
+                </p>
+                <p className="text-gray-500">
+                  Email:{" "}
+                  <a href="mailto:cz468@cornell.edu" className="underline">
+                    cz468@cornell.edu
+                  </a>
+                </p>
+                <p>Feel free to reach out!</p>
+              </div>
+            </div>
+          </div>
         </>
       )}
     </div>

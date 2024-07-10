@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/libs/utils";
 import { Token } from "@/libs/type";
 import { TokenBox } from "@/components/TokenBox";
@@ -11,22 +11,28 @@ type TokenGalleryProps = {
   loadMoreTokens: () => void;
 };
 
-export const TokenGallery = (props: TokenGalleryProps) => {
+export const TokenGallery = ({
+  classes,
+  tokens,
+  ifShader,
+  category,
+  loadMoreTokens
+}: TokenGalleryProps) => {
   const [displayedTokens, setDisplayedTokens] = useState<Token[]>([]);
   const tokensPerPage = 100;
   const observer = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setDisplayedTokens(props.tokens.slice(0, tokensPerPage));
-  }, [props.tokens]);
+    setDisplayedTokens(tokens.slice(0, tokensPerPage));
+  }, [tokens]);
 
   useEffect(() => {
     if (observer.current) observer.current.disconnect();
 
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        props.loadMoreTokens();
+        loadMoreTokens();
       }
     });
 
@@ -37,17 +43,17 @@ export const TokenGallery = (props: TokenGalleryProps) => {
     return () => {
       if (observer.current) observer.current.disconnect();
     };
-  }, [props.loadMoreTokens]);
+  }, [loadMoreTokens]);
 
   useEffect(() => {
-    setDisplayedTokens(props.tokens);
-  }, [props.tokens]);
+    setDisplayedTokens(tokens);
+  }, [tokens]);
 
   return (
     <div>
       <div
         className={cn(
-          props.classes +
+          classes +
             " flex flex-wrap gap-2 items-start justify-start pb-4 pt-1 bg-gray-50"
         )}
       >
@@ -55,8 +61,8 @@ export const TokenGallery = (props: TokenGalleryProps) => {
           <TokenBox
             key={index}
             token={token}
-            ifShader={props.ifShader}
-            category={props.category}
+            ifShader={ifShader}
+            category={category}
           />
         ))}
       </div>
